@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+    PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+    "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.bozhong.springcloud.mapper.GuidanceEvaluationDetailMapper">
+	<resultMap id="guidanceEvaluationDetailList" type="com.bozhong.springcloud.domain.dbdo.GuidanceEvaluationDetailDO">
+		<id property="id" column="id" />
+		<result property="listId" column="List_id" jdbcType="BIGINT" />
+		<result property="eduObject" column="edu_object" jdbcType="VARCHAR" />
+		<result property="eduDate" column="edu_date" jdbcType="TIMESTAMP" />
+		<result property="educator" column="educator" jdbcType="VARCHAR" />
+		<result property="eduContent" column="edu_content" jdbcType="VARCHAR" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="eduType" column="edu_type" jdbcType="VARCHAR" />
+		<result property="eduMethod" column="edu_method" jdbcType="VARCHAR" />
+		<result property="evalDate" column="eval_date" jdbcType="TIMESTAMP" />
+		<result property="eduEvaluate" column="edu_evaluate" jdbcType="VARCHAR" />
+		<result property="evaluator" column="evaluator" jdbcType="VARCHAR" />
+		<result property="reeduDate" column="reedu_date" jdbcType="TIMESTAMP" />
+		<result property="reeducator" column="reeducator" jdbcType="VARCHAR" />
+		<result property="sendStatus" column="send_status" jdbcType="BOOLEAN" />
+		<result property="classId" column="class_id" jdbcType="BIGINT" />
+		<result property="orginData" column="orgin_data" jdbcType="BOOLEAN" />
+		<result property="eduTypeKey" column="edu_type_key" jdbcType="VARCHAR" />
+		<result property="validFlag" column="valid_flag" jdbcType="BOOLEAN" />
+		<result property="createTime" column="create_time" jdbcType="TIMESTAMP" />
+		<result property="createBy" column="create_by" jdbcType="BIGINT" />
+		<result property="updateTime" column="update_time" jdbcType="TIMESTAMP" />
+		<result property="updateBy" column="update_by" jdbcType="BIGINT" />
+	</resultMap>
+
+	<sql id="BaseColumnList" >
+		id,
+		List_id as listId,
+		edu_object as eduObject,
+		edu_date as eduDate,
+		educator,
+		edu_content as eduContent,
+		name,
+		edu_type as eduType,
+		edu_method as eduMethod,
+		eval_date as evalDate,
+		edu_evaluate as eduEvaluate,
+		evaluator,
+		reedu_date as reeduDate,
+		reeducator,
+		send_status as sendStatus,
+		class_id as classId,
+		orgin_data as orginData,
+		edu_type_key as eduTypeKey,
+		valid_flag as validFlag,
+		create_time as createTime,
+		create_by as createBy,
+		update_time as updateTime,
+		update_by as updateBy
+	</sql>
+
+	<insert id="addOne" parameterType="com.bozhong.springcloud.domain.dbdo.GuidanceEvaluationDetailDO"
+			useGeneratedKeys="true" keyProperty="id">
+		insert into
+		guidance_evaluation_detail (List_id,edu_object,edu_date,educator,edu_content,name,edu_type,edu_method,eval_date,edu_evaluate,evaluator,reedu_date,reeducator,send_status,class_id,orgin_data,edu_type_key,valid_flag,create_time,create_by,update_time,update_by)
+		values
+		(
+		#{listId, jdbcType=BIGINT},
+		#{eduObject, jdbcType=VARCHAR},
+		#{eduDate, jdbcType=TIMESTAMP},
+		#{educator, jdbcType=VARCHAR},
+		#{eduContent, jdbcType=VARCHAR},
+		#{name, jdbcType=VARCHAR},
+		#{eduType, jdbcType=VARCHAR},
+		#{eduMethod, jdbcType=VARCHAR},
+		#{evalDate, jdbcType=TIMESTAMP},
+		#{eduEvaluate, jdbcType=VARCHAR},
+		#{evaluator, jdbcType=VARCHAR},
+		#{reeduDate, jdbcType=TIMESTAMP},
+		#{reeducator, jdbcType=VARCHAR},
+		#{sendStatus, jdbcType=BOOLEAN},
+		#{classId, jdbcType=BIGINT},
+		#{orginData, jdbcType=BOOLEAN},
+		#{eduTypeKey, jdbcType=VARCHAR},
+		#{validFlag, jdbcType=BOOLEAN},
+		#{createTime, jdbcType=TIMESTAMP},
+		#{createBy, jdbcType=BIGINT},
+		#{updateTime, jdbcType=TIMESTAMP},
+		#{updateBy, jdbcType=BIGINT}
+		)
+	</insert>
+
+	<select id="getAll"  resultMap="guidanceEvaluationDetailList">
+		select * from
+		guidance_evaluation_detail
+		<where>
+    		<if test="listId != null">
+				and List_id = #{listId,jdbcType=BIGINT}		
+			</if>
+    		<if test="eduObject != null">
+				and edu_object like CONCAT('%',#{eduObject,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="eduDate != null">
+				and edu_date = #{eduDate,jdbcType=TIMESTAMP}		
+			</if>
+    		<if test="educator != null">
+				and educator like CONCAT('%',#{educator,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="eduContent != null">
+				and edu_content like CONCAT('%',#{eduContent,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="name != null">
+				and name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="eduType != null">
+				and edu_type like CONCAT('%',#{eduType,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="eduMethod != null">
+				and edu_method like CONCAT('%',#{eduMethod,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="evalDate != null">
+				and eval_date = #{evalDate,jdbcType=TIMESTAMP}		
+			</if>
+    		<if test="eduEvaluate != null">
+				and edu_evaluate like CONCAT('%',#{eduEvaluate,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="evaluator != null">
+				and evaluator like CONCAT('%',#{evaluator,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="reeduDate != null">
+				and reedu_date = #{reeduDate,jdbcType=TIMESTAMP}		
+			</if>
+    		<if test="reeducator != null">
+				and reeducator like CONCAT('%',#{reeducator,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="sendStatus != null">
+				and send_status = #{sendStatus,jdbcType=BOOLEAN}		
+			</if>
+    		<if test="classId != null">
+				and class_id = #{classId,jdbcType=BIGINT}		
+			</if>
+    		<if test="orginData != null">
+				and orgin_data = #{orginData,jdbcType=BOOLEAN}		
+			</if>
+    		<if test="eduTypeKey != null">
+				and edu_type_key like CONCAT('%',#{eduTypeKey,jdbcType=VARCHAR},'%')
+			</if>
+    		<if test="validFlag != null">
+				and valid_flag = #{validFlag,jdbcType=BOOLEAN}		
+			</if>
+    		<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}		
+			</if>
+    		<if test="createBy != null">
+				and create_by = #{createBy,jdbcType=BIGINT}		
+			</if>
+    		<if test="updateTime != null">
+				and update_time = #{updateTime,jdbcType=TIMESTAMP}		
+			</if>
+    		<if test="updateBy != null">
+				and update_by = #{updateBy,jdbcType=BIGINT}
+			</if>
+		</where>
+	</select>
+
+
+	<select id="getOne" resultMap="guidanceEvaluationDetailList" parameterType="java.lang.Long">
+		select * from guidance_evaluation_detail
+		where id=#{id} and valid_flag=1
+	</select>
+
+
+</mapper>
