@@ -19,7 +19,19 @@ public class HealthController {
 
     @RequestMapping("/index")
     public String index() {
+
         return "hello world，your server is OK";
+    }
+
+
+    @RequestMapping("/test")
+    public String test() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "test";
     }
 
 
